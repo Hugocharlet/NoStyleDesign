@@ -12,6 +12,7 @@
 <meta name="robots" content="index, follow" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <link rel="canonical" href="https://www.nostyle-design.com/" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -400,11 +401,11 @@ body.hide-mono-labels .cad-card .label{display:none}
 .summary-quote{
   margin:80px auto 0;max-width:820px;text-align:center;
   font-family:var(--mono);font-style:italic;font-size:18px;line-height:1.55;
-  color:var(--terra);
+  color:var(--ink);
 }
 .summary-quote::before, .summary-quote::after{
-  content:"";display:block;width:42px;height:1px;background:var(--terra);
-  margin:24px auto;opacity:.4;
+  content:"";display:block;width:42px;height:1px;background:var(--ink);
+  margin:16px auto;opacity:.25;
 }
 
 /* ============ METHOD ============ */
@@ -803,9 +804,11 @@ body.hide-mono-labels .cad-card .label{display:none}
   line-height:1.8;
 }
 .col-direct .tel{
-  font-family:var(--mono);font-style:italic;font-size:14px;color:var(--terra-light);
+  font-family:var(--mono);font-style:italic;font-size:13px;color:var(--terra-light);
   display:block;margin-bottom:14px;letter-spacing:.01em;
 }
+.col-direct .tel-mail{color:rgba(237,231,220,.78);transition:color .2s ease}
+.col-direct .tel-mail:hover{color:var(--terra-light)}
 .col-direct .remote{
   font-family:var(--mono);font-style:italic;font-size:12px;
   color:rgba(237,231,220,.4);margin-top:20px;
@@ -1069,7 +1072,7 @@ body.hide-mono-labels .cad-card .label{display:none}
 </section>
 
 <!-- ================= WHO ================= -->
-<section class="s-pad s-warm" id="who" data-screen-label="02 Who">
+<section class="s-pad s-warm" id="who" data-screen-label="02 Who" style="padding-bottom:60px">
   <div class="who" style="font-family: &quot;Hanken Grotesk&quot;">
     <div class="who-media reveal">
       <span class="v-tag"><span class="rec"></span> Studio · process loop</span>
@@ -1092,6 +1095,7 @@ body.hide-mono-labels .cad-card .label{display:none}
       </div>
     </div>
   </div>
+  <p class="summary-quote reveal" style="margin-top:80px">"Whether you have small modeling projects or require complete furniture modeling, we are here to help."</p>
 </section>
 
 <!-- ================= EXPERTISE ================= -->
@@ -1133,7 +1137,6 @@ body.hide-mono-labels .cad-card .label{display:none}
       <div class="s-card reveal"><span class="num">06</span><h3>Plans &amp; 3D files</h3><p>Production-ready files: STEP, IGES, STL, drawings. Delivered with revisions, ready for the workshop.</p></div>
     </div>
 
-    <p class="summary-quote reveal">"Whether you have small modeling projects or require complete furniture modeling, we are here to help."</p>
   </div>
 </section>
 
@@ -1163,7 +1166,7 @@ with detailed images and sénarios</p></div>
   <div class="process-wrap">
     <div class="process-head reveal">
       <h2 class="section-title">PROCESS</h2>
-      <p class="process-lede section-capsule">From a pencil line on paper to a production-ready file. Each step is documented, reviewed, and decided with you.</p>
+      <!-- <p class="process-lede section-capsule">From a pencil line on paper to a production-ready file. Each step is documented, reviewed, and decided with you.</p> -->
     </div>
 
     <ol class="process-flow reveal">
@@ -1249,7 +1252,7 @@ with detailed images and sénarios</p></div>
 <section class="s-light" style="padding:120px 0" id="skills" data-screen-label="08 Skills">
   <div class="section-head reveal" style="padding:0 36px 40px">
     <h2 class="section-title" style="font-size: 64px">SKILLS</h2>
-    <p class="section-capsule">From hand sketch to manufacturable surface — four crafts, one continuous thread.</p>
+    <!-- <p class="section-capsule">From hand sketch to manufacturable surface — four crafts, one continuous thread.</p> -->
   </div>
 
   <div class="skills-wrap">
@@ -1434,6 +1437,7 @@ with detailed images and sénarios</p></div>
     <div class="col col-direct">
       <h4>Contact</h4>
       <a href="tel:+33672666686" class="tel">+33 6 72 66 66 86</a>
+      <a href="mailto:info@hugocharlet.com" class="tel tel-mail">info@hugocharlet.com</a>
       <p>Available Mon — Fri<br>09:00 — 19:00 CET</p>
       <p class="remote">Remote across Europe.<br>Workshop visits on request.</p>
     </div>
