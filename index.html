@@ -962,9 +962,11 @@ body.hide-mono-labels .cad-card .label{display:none}
   /* Services : 2 colonnes */
   .summary-grid{grid-template-columns:1fr 1fr;gap:10px}
 
-  .why-grid{grid-template-columns:1fr}
-  .why-item{padding:24px 22px}
-  .contact-grid{grid-template-columns:1fr;gap:32px}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .why-item{padding:16px 14px}
+  .why-item h3{font-size:14px}
+  .contact-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .col-brand{grid-column:1/-1}
   .skills-item{width:78vw}
   .skills-boxes{grid-template-columns:1fr 1fr;gap:10px}
   .skills-wrap{padding:0 16px;overflow-x:hidden}
@@ -989,6 +991,9 @@ body.hide-mono-labels .cad-card .label{display:none}
   .copyright{flex-direction:column;gap:8px;align-items:flex-start}
   .process-flow{grid-template-columns:1fr 1fr;gap:16px}
   .pf-step + .pf-step::before{display:none}
+  .section-head{padding:0 16px 20px !important}
+  .soft-list{font-size:11px;gap:4px 10px;margin-top:20px;padding-top:16px}
+  .soft-list span+span::before{margin-right:10px}
 }
 </style>
 </head>
