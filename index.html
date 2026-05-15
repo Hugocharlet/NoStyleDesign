@@ -888,13 +888,46 @@ body.hide-mono-labels .cad-card .label{display:none}
 .cookie-btn.decline:hover{background:var(--bg-alt);border-color:var(--ink)}
 
 /* ============ RESPONSIVE ============ */
+
+/* — Hamburger — */
+.nav-burger{
+  display:none;flex-direction:column;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;
+  justify-self:end;
+}
+.nav-burger span{
+  display:block;width:22px;height:1.5px;
+  background:var(--ink);transition:transform .3s ease, opacity .3s ease;
+}
+.nav-mobile{
+  display:none;flex-direction:column;gap:0;
+  position:fixed;top:0;left:0;right:0;bottom:0;z-index:49;
+  background:var(--bg);padding:100px 36px 48px;
+  transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);
+}
+.nav-mobile.open{transform:translateX(0)}
+.nav-mobile a{
+  font-weight:600;font-size:clamp(28px,8vw,42px);
+  letter-spacing:.04em;text-transform:uppercase;
+  color:var(--ink);padding:14px 0;
+  border-bottom:1px solid var(--rule);
+  display:block;
+}
+.nav-mobile a:last-child{border-bottom:none;color:var(--terra);margin-top:24px}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
 @media (max-width: 980px){
-  .nav{grid-template-columns:auto auto;}
+  .nav{grid-template-columns:auto auto;padding:16px 20px}
   .nav-links{display:none}
+  .nav-burger{display:flex}
+  .nav-mobile{display:flex}
   .hero-content{flex-direction:column;align-items:flex-start;padding:32px 20px}
   .hero-meta{flex-direction:row;align-items:flex-start;gap:14px}
   .hero-nav{flex-direction:row;align-items:center;align-self:flex-end;gap:14px}
   .who, .expertise{grid-template-columns:1fr;gap:40px}
+  .who-text .body{max-width:100%}
   .summary-grid{grid-template-columns:1fr 1fr}
   .timeline{grid-template-columns:1fr;gap:0}
   .timeline::before{display:none}
@@ -902,15 +935,34 @@ body.hide-mono-labels .cad-card .label{display:none}
   .step .dot{left:-7px;top:30px}
   .why-grid{grid-template-columns:1fr 1fr}
   .contact-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .contact .col{padding-right:0}
   .s-pad{padding:80px 20px}
+  .skills-boxes{grid-template-columns:1fr 1fr}
 }
+
 @media (max-width: 640px){
+  .nav{padding:14px 16px}
+  .nav-mobile{padding:88px 24px 48px}
+  .s-pad{padding:60px 16px}
+  .contact{padding:60px 16px 40px}
+  h2.section-title{font-size:clamp(28px,10vw,48px)}
+  .hero-title{font-size:clamp(36px,11vw,64px)}
+  .hero-content{padding:24px 16px}
   .summary-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
   .why-item{padding:24px 22px}
-  .contact-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr;gap:32px}
   .skills-item{width:78vw}
+  .skills-boxes{grid-template-columns:1fr}
   .cad-card{flex:0 0 92%}
+  .who-quote{max-width:100% !important}
+  .section-head{flex-direction:column;gap:16px}
+  .section-capsule{text-align:left;flex:none}
+  #cookie-banner{left:12px;right:12px;bottom:12px;max-width:none;width:auto}
+  .copyright{flex-direction:column;gap:8px;align-items:flex-start}
+  .skills-wrap{overflow-x:hidden}
+  .sk-box .sk-media{aspect-ratio:16/9}
+  .process-flow{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -930,7 +982,20 @@ body.hide-mono-labels .cad-card .label{display:none}
     <a href="#why">Why us</a>
   </div>
   <a href="#contact" class="nav-tel">Contact</a>
+  <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile" id="navMobile">
+  <a href="#who" class="nav-mobile-link">Who we are</a>
+  <a href="#services" class="nav-mobile-link">Services</a>
+  <a href="#projects" class="nav-mobile-link">Realisations</a>
+  <a href="#skills" class="nav-mobile-link">Skills</a>
+  <a href="#why" class="nav-mobile-link">Why us</a>
+  <a href="#contact" class="nav-mobile-link">Contact</a>
+</div>
 
 <!-- ================= HERO ================= -->
 <section class="hero" id="top" data-screen-label="01 Hero">
@@ -1358,6 +1423,24 @@ const nav = document.getElementById('nav');
 const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
 onScroll();
 window.addEventListener('scroll', onScroll, {passive:true});
+
+// Hamburger menu
+const burger = document.getElementById('navBurger');
+const mobileMenu = document.getElementById('navMobile');
+burger.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+document.querySelectorAll('.nav-mobile-link').forEach(link => {
+  link.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', false);
+    document.body.style.overflow = '';
+  });
+});
 
 // Reveal on scroll
 const io = new IntersectionObserver((entries) => {
