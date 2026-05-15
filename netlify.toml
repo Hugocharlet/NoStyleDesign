@@ -1,0 +1,14 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "http://www.nostyle-design.com/*"
+  to   = "https://www.nostyle-design.com/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from = "http://nostyle-design.com/*"
+  to   = "https://www.nostyle-design.com/:splat"
+  status = 301
+  force  = true

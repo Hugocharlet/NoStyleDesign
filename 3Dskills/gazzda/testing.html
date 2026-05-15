@@ -1,0 +1,651 @@
+<HTML>
+ <HEAD>
+  <TITLE>testing</TITLE>
+ </HEAD>
+ <BODY onLoad="Load()">
+ <FONT FACE=VERDANA SIZE=2><B>testing</B><BR>
+	<IMG BORDER=1 STYLE="border-color:black" ID="animated_image"><BR>
+<FONT FACE=COURIER SIZE=2>
+<SPAN ID="frame_title" STYLE="position:relative;left:0;top:-15;color:black;background-color:white;padding:1px;border-width:1px;border-style:solid;border-color:black;display:inline;"></SPAN>
+&nbsp;</FONT><BR>
+  <BUTTON ID="btnToggle" onClick="start_stop()" onDblClick="start_stop()">Arrêter</BUTTON>&nbsp;
+<BUTTON ID="btnFirst" onClick="firstFrame()" onDblClick="firstFrame()" STYLE="width:35">&lt;&lt;</BUTTON>&nbsp;
+  <BUTTON ID="btnPrev" onClick="prevFrame()" onDblClick="prevFrame()" STYLE="width:35">&lt;</BUTTON>&nbsp;
+  <BUTTON ID="btnNext" onClick="nextFrame()" onDblClick="nextFrame()" STYLE="width:35">&gt;</BUTTON>&nbsp;
+  <BUTTON ID="btnLast" onClick="lastFrame()" onDblClick="lastFrame()" STYLE="width:35">&gt;&gt;</BUTTON>
+  <FONT SIZE=1>
+  <BR><BR>&nbsp;&nbsp;&nbsp;<INPUT ID="checkLoop"" TYPE="checkbox" style="width:13;height:13;">Boucle continue
+  <BR>&nbsp;&nbsp;&nbsp;<INPUT ID="checkCounter" TYPE="checkbox" CHECKED onClick="showCounter(this.checked)" style="width:13;height:13;">Montrer le compteur d'images
+  </FONT>
+  <P>
+  <FONT COLOR=888888 SIZE=1>Animation créée dans <A TARGET=_blank HREF="http://www.rhino3d.com"><FONT COLOR=7777ff SIZE=1>Rhino</FONT></A>.</FONT>
+ </BODY>
+</HTML>
+
+<STYLE>
+  button {width:75;height:25;font-family:mssansserif;font-size:8pt}
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+  var FRAME_DELAY = 75;
+  var timeoutID;
+  var ImageCount = 500;
+  var Images = new Array();
+  for( i=0; i < ImageCount; i++ )
+  	Images[i] = new Image();
+
+  var currentImageIndex = 0;
+  var bDisplayDate = 0;
+  var Dates = new Array(0);
+Images[0].src = "testing_00000.jpg";
+Images[1].src = "testing_00001.jpg";
+Images[2].src = "testing_00002.jpg";
+Images[3].src = "testing_00003.jpg";
+Images[4].src = "testing_00004.jpg";
+Images[5].src = "testing_00005.jpg";
+Images[6].src = "testing_00006.jpg";
+Images[7].src = "testing_00007.jpg";
+Images[8].src = "testing_00008.jpg";
+Images[9].src = "testing_00009.jpg";
+Images[10].src = "testing_00010.jpg";
+Images[11].src = "testing_00011.jpg";
+Images[12].src = "testing_00012.jpg";
+Images[13].src = "testing_00013.jpg";
+Images[14].src = "testing_00014.jpg";
+Images[15].src = "testing_00015.jpg";
+Images[16].src = "testing_00016.jpg";
+Images[17].src = "testing_00017.jpg";
+Images[18].src = "testing_00018.jpg";
+Images[19].src = "testing_00019.jpg";
+Images[20].src = "testing_00020.jpg";
+Images[21].src = "testing_00021.jpg";
+Images[22].src = "testing_00022.jpg";
+Images[23].src = "testing_00023.jpg";
+Images[24].src = "testing_00024.jpg";
+Images[25].src = "testing_00025.jpg";
+Images[26].src = "testing_00026.jpg";
+Images[27].src = "testing_00027.jpg";
+Images[28].src = "testing_00028.jpg";
+Images[29].src = "testing_00029.jpg";
+Images[30].src = "testing_00030.jpg";
+Images[31].src = "testing_00031.jpg";
+Images[32].src = "testing_00032.jpg";
+Images[33].src = "testing_00033.jpg";
+Images[34].src = "testing_00034.jpg";
+Images[35].src = "testing_00035.jpg";
+Images[36].src = "testing_00036.jpg";
+Images[37].src = "testing_00037.jpg";
+Images[38].src = "testing_00038.jpg";
+Images[39].src = "testing_00039.jpg";
+Images[40].src = "testing_00040.jpg";
+Images[41].src = "testing_00041.jpg";
+Images[42].src = "testing_00042.jpg";
+Images[43].src = "testing_00043.jpg";
+Images[44].src = "testing_00044.jpg";
+Images[45].src = "testing_00045.jpg";
+Images[46].src = "testing_00046.jpg";
+Images[47].src = "testing_00047.jpg";
+Images[48].src = "testing_00048.jpg";
+Images[49].src = "testing_00049.jpg";
+Images[50].src = "testing_00050.jpg";
+Images[51].src = "testing_00051.jpg";
+Images[52].src = "testing_00052.jpg";
+Images[53].src = "testing_00053.jpg";
+Images[54].src = "testing_00054.jpg";
+Images[55].src = "testing_00055.jpg";
+Images[56].src = "testing_00056.jpg";
+Images[57].src = "testing_00057.jpg";
+Images[58].src = "testing_00058.jpg";
+Images[59].src = "testing_00059.jpg";
+Images[60].src = "testing_00060.jpg";
+Images[61].src = "testing_00061.jpg";
+Images[62].src = "testing_00062.jpg";
+Images[63].src = "testing_00063.jpg";
+Images[64].src = "testing_00064.jpg";
+Images[65].src = "testing_00065.jpg";
+Images[66].src = "testing_00066.jpg";
+Images[67].src = "testing_00067.jpg";
+Images[68].src = "testing_00068.jpg";
+Images[69].src = "testing_00069.jpg";
+Images[70].src = "testing_00070.jpg";
+Images[71].src = "testing_00071.jpg";
+Images[72].src = "testing_00072.jpg";
+Images[73].src = "testing_00073.jpg";
+Images[74].src = "testing_00074.jpg";
+Images[75].src = "testing_00075.jpg";
+Images[76].src = "testing_00076.jpg";
+Images[77].src = "testing_00077.jpg";
+Images[78].src = "testing_00078.jpg";
+Images[79].src = "testing_00079.jpg";
+Images[80].src = "testing_00080.jpg";
+Images[81].src = "testing_00081.jpg";
+Images[82].src = "testing_00082.jpg";
+Images[83].src = "testing_00083.jpg";
+Images[84].src = "testing_00084.jpg";
+Images[85].src = "testing_00085.jpg";
+Images[86].src = "testing_00086.jpg";
+Images[87].src = "testing_00087.jpg";
+Images[88].src = "testing_00088.jpg";
+Images[89].src = "testing_00089.jpg";
+Images[90].src = "testing_00090.jpg";
+Images[91].src = "testing_00091.jpg";
+Images[92].src = "testing_00092.jpg";
+Images[93].src = "testing_00093.jpg";
+Images[94].src = "testing_00094.jpg";
+Images[95].src = "testing_00095.jpg";
+Images[96].src = "testing_00096.jpg";
+Images[97].src = "testing_00097.jpg";
+Images[98].src = "testing_00098.jpg";
+Images[99].src = "testing_00099.jpg";
+Images[100].src = "testing_00100.jpg";
+Images[101].src = "testing_00101.jpg";
+Images[102].src = "testing_00102.jpg";
+Images[103].src = "testing_00103.jpg";
+Images[104].src = "testing_00104.jpg";
+Images[105].src = "testing_00105.jpg";
+Images[106].src = "testing_00106.jpg";
+Images[107].src = "testing_00107.jpg";
+Images[108].src = "testing_00108.jpg";
+Images[109].src = "testing_00109.jpg";
+Images[110].src = "testing_00110.jpg";
+Images[111].src = "testing_00111.jpg";
+Images[112].src = "testing_00112.jpg";
+Images[113].src = "testing_00113.jpg";
+Images[114].src = "testing_00114.jpg";
+Images[115].src = "testing_00115.jpg";
+Images[116].src = "testing_00116.jpg";
+Images[117].src = "testing_00117.jpg";
+Images[118].src = "testing_00118.jpg";
+Images[119].src = "testing_00119.jpg";
+Images[120].src = "testing_00120.jpg";
+Images[121].src = "testing_00121.jpg";
+Images[122].src = "testing_00122.jpg";
+Images[123].src = "testing_00123.jpg";
+Images[124].src = "testing_00124.jpg";
+Images[125].src = "testing_00125.jpg";
+Images[126].src = "testing_00126.jpg";
+Images[127].src = "testing_00127.jpg";
+Images[128].src = "testing_00128.jpg";
+Images[129].src = "testing_00129.jpg";
+Images[130].src = "testing_00130.jpg";
+Images[131].src = "testing_00131.jpg";
+Images[132].src = "testing_00132.jpg";
+Images[133].src = "testing_00133.jpg";
+Images[134].src = "testing_00134.jpg";
+Images[135].src = "testing_00135.jpg";
+Images[136].src = "testing_00136.jpg";
+Images[137].src = "testing_00137.jpg";
+Images[138].src = "testing_00138.jpg";
+Images[139].src = "testing_00139.jpg";
+Images[140].src = "testing_00140.jpg";
+Images[141].src = "testing_00141.jpg";
+Images[142].src = "testing_00142.jpg";
+Images[143].src = "testing_00143.jpg";
+Images[144].src = "testing_00144.jpg";
+Images[145].src = "testing_00145.jpg";
+Images[146].src = "testing_00146.jpg";
+Images[147].src = "testing_00147.jpg";
+Images[148].src = "testing_00148.jpg";
+Images[149].src = "testing_00149.jpg";
+Images[150].src = "testing_00150.jpg";
+Images[151].src = "testing_00151.jpg";
+Images[152].src = "testing_00152.jpg";
+Images[153].src = "testing_00153.jpg";
+Images[154].src = "testing_00154.jpg";
+Images[155].src = "testing_00155.jpg";
+Images[156].src = "testing_00156.jpg";
+Images[157].src = "testing_00157.jpg";
+Images[158].src = "testing_00158.jpg";
+Images[159].src = "testing_00159.jpg";
+Images[160].src = "testing_00160.jpg";
+Images[161].src = "testing_00161.jpg";
+Images[162].src = "testing_00162.jpg";
+Images[163].src = "testing_00163.jpg";
+Images[164].src = "testing_00164.jpg";
+Images[165].src = "testing_00165.jpg";
+Images[166].src = "testing_00166.jpg";
+Images[167].src = "testing_00167.jpg";
+Images[168].src = "testing_00168.jpg";
+Images[169].src = "testing_00169.jpg";
+Images[170].src = "testing_00170.jpg";
+Images[171].src = "testing_00171.jpg";
+Images[172].src = "testing_00172.jpg";
+Images[173].src = "testing_00173.jpg";
+Images[174].src = "testing_00174.jpg";
+Images[175].src = "testing_00175.jpg";
+Images[176].src = "testing_00176.jpg";
+Images[177].src = "testing_00177.jpg";
+Images[178].src = "testing_00178.jpg";
+Images[179].src = "testing_00179.jpg";
+Images[180].src = "testing_00180.jpg";
+Images[181].src = "testing_00181.jpg";
+Images[182].src = "testing_00182.jpg";
+Images[183].src = "testing_00183.jpg";
+Images[184].src = "testing_00184.jpg";
+Images[185].src = "testing_00185.jpg";
+Images[186].src = "testing_00186.jpg";
+Images[187].src = "testing_00187.jpg";
+Images[188].src = "testing_00188.jpg";
+Images[189].src = "testing_00189.jpg";
+Images[190].src = "testing_00190.jpg";
+Images[191].src = "testing_00191.jpg";
+Images[192].src = "testing_00192.jpg";
+Images[193].src = "testing_00193.jpg";
+Images[194].src = "testing_00194.jpg";
+Images[195].src = "testing_00195.jpg";
+Images[196].src = "testing_00196.jpg";
+Images[197].src = "testing_00197.jpg";
+Images[198].src = "testing_00198.jpg";
+Images[199].src = "testing_00199.jpg";
+Images[200].src = "testing_00200.jpg";
+Images[201].src = "testing_00201.jpg";
+Images[202].src = "testing_00202.jpg";
+Images[203].src = "testing_00203.jpg";
+Images[204].src = "testing_00204.jpg";
+Images[205].src = "testing_00205.jpg";
+Images[206].src = "testing_00206.jpg";
+Images[207].src = "testing_00207.jpg";
+Images[208].src = "testing_00208.jpg";
+Images[209].src = "testing_00209.jpg";
+Images[210].src = "testing_00210.jpg";
+Images[211].src = "testing_00211.jpg";
+Images[212].src = "testing_00212.jpg";
+Images[213].src = "testing_00213.jpg";
+Images[214].src = "testing_00214.jpg";
+Images[215].src = "testing_00215.jpg";
+Images[216].src = "testing_00216.jpg";
+Images[217].src = "testing_00217.jpg";
+Images[218].src = "testing_00218.jpg";
+Images[219].src = "testing_00219.jpg";
+Images[220].src = "testing_00220.jpg";
+Images[221].src = "testing_00221.jpg";
+Images[222].src = "testing_00222.jpg";
+Images[223].src = "testing_00223.jpg";
+Images[224].src = "testing_00224.jpg";
+Images[225].src = "testing_00225.jpg";
+Images[226].src = "testing_00226.jpg";
+Images[227].src = "testing_00227.jpg";
+Images[228].src = "testing_00228.jpg";
+Images[229].src = "testing_00229.jpg";
+Images[230].src = "testing_00230.jpg";
+Images[231].src = "testing_00231.jpg";
+Images[232].src = "testing_00232.jpg";
+Images[233].src = "testing_00233.jpg";
+Images[234].src = "testing_00234.jpg";
+Images[235].src = "testing_00235.jpg";
+Images[236].src = "testing_00236.jpg";
+Images[237].src = "testing_00237.jpg";
+Images[238].src = "testing_00238.jpg";
+Images[239].src = "testing_00239.jpg";
+Images[240].src = "testing_00240.jpg";
+Images[241].src = "testing_00241.jpg";
+Images[242].src = "testing_00242.jpg";
+Images[243].src = "testing_00243.jpg";
+Images[244].src = "testing_00244.jpg";
+Images[245].src = "testing_00245.jpg";
+Images[246].src = "testing_00246.jpg";
+Images[247].src = "testing_00247.jpg";
+Images[248].src = "testing_00248.jpg";
+Images[249].src = "testing_00249.jpg";
+Images[250].src = "testing_00250.jpg";
+Images[251].src = "testing_00251.jpg";
+Images[252].src = "testing_00252.jpg";
+Images[253].src = "testing_00253.jpg";
+Images[254].src = "testing_00254.jpg";
+Images[255].src = "testing_00255.jpg";
+Images[256].src = "testing_00256.jpg";
+Images[257].src = "testing_00257.jpg";
+Images[258].src = "testing_00258.jpg";
+Images[259].src = "testing_00259.jpg";
+Images[260].src = "testing_00260.jpg";
+Images[261].src = "testing_00261.jpg";
+Images[262].src = "testing_00262.jpg";
+Images[263].src = "testing_00263.jpg";
+Images[264].src = "testing_00264.jpg";
+Images[265].src = "testing_00265.jpg";
+Images[266].src = "testing_00266.jpg";
+Images[267].src = "testing_00267.jpg";
+Images[268].src = "testing_00268.jpg";
+Images[269].src = "testing_00269.jpg";
+Images[270].src = "testing_00270.jpg";
+Images[271].src = "testing_00271.jpg";
+Images[272].src = "testing_00272.jpg";
+Images[273].src = "testing_00273.jpg";
+Images[274].src = "testing_00274.jpg";
+Images[275].src = "testing_00275.jpg";
+Images[276].src = "testing_00276.jpg";
+Images[277].src = "testing_00277.jpg";
+Images[278].src = "testing_00278.jpg";
+Images[279].src = "testing_00279.jpg";
+Images[280].src = "testing_00280.jpg";
+Images[281].src = "testing_00281.jpg";
+Images[282].src = "testing_00282.jpg";
+Images[283].src = "testing_00283.jpg";
+Images[284].src = "testing_00284.jpg";
+Images[285].src = "testing_00285.jpg";
+Images[286].src = "testing_00286.jpg";
+Images[287].src = "testing_00287.jpg";
+Images[288].src = "testing_00288.jpg";
+Images[289].src = "testing_00289.jpg";
+Images[290].src = "testing_00290.jpg";
+Images[291].src = "testing_00291.jpg";
+Images[292].src = "testing_00292.jpg";
+Images[293].src = "testing_00293.jpg";
+Images[294].src = "testing_00294.jpg";
+Images[295].src = "testing_00295.jpg";
+Images[296].src = "testing_00296.jpg";
+Images[297].src = "testing_00297.jpg";
+Images[298].src = "testing_00298.jpg";
+Images[299].src = "testing_00299.jpg";
+Images[300].src = "testing_00300.jpg";
+Images[301].src = "testing_00301.jpg";
+Images[302].src = "testing_00302.jpg";
+Images[303].src = "testing_00303.jpg";
+Images[304].src = "testing_00304.jpg";
+Images[305].src = "testing_00305.jpg";
+Images[306].src = "testing_00306.jpg";
+Images[307].src = "testing_00307.jpg";
+Images[308].src = "testing_00308.jpg";
+Images[309].src = "testing_00309.jpg";
+Images[310].src = "testing_00310.jpg";
+Images[311].src = "testing_00311.jpg";
+Images[312].src = "testing_00312.jpg";
+Images[313].src = "testing_00313.jpg";
+Images[314].src = "testing_00314.jpg";
+Images[315].src = "testing_00315.jpg";
+Images[316].src = "testing_00316.jpg";
+Images[317].src = "testing_00317.jpg";
+Images[318].src = "testing_00318.jpg";
+Images[319].src = "testing_00319.jpg";
+Images[320].src = "testing_00320.jpg";
+Images[321].src = "testing_00321.jpg";
+Images[322].src = "testing_00322.jpg";
+Images[323].src = "testing_00323.jpg";
+Images[324].src = "testing_00324.jpg";
+Images[325].src = "testing_00325.jpg";
+Images[326].src = "testing_00326.jpg";
+Images[327].src = "testing_00327.jpg";
+Images[328].src = "testing_00328.jpg";
+Images[329].src = "testing_00329.jpg";
+Images[330].src = "testing_00330.jpg";
+Images[331].src = "testing_00331.jpg";
+Images[332].src = "testing_00332.jpg";
+Images[333].src = "testing_00333.jpg";
+Images[334].src = "testing_00334.jpg";
+Images[335].src = "testing_00335.jpg";
+Images[336].src = "testing_00336.jpg";
+Images[337].src = "testing_00337.jpg";
+Images[338].src = "testing_00338.jpg";
+Images[339].src = "testing_00339.jpg";
+Images[340].src = "testing_00340.jpg";
+Images[341].src = "testing_00341.jpg";
+Images[342].src = "testing_00342.jpg";
+Images[343].src = "testing_00343.jpg";
+Images[344].src = "testing_00344.jpg";
+Images[345].src = "testing_00345.jpg";
+Images[346].src = "testing_00346.jpg";
+Images[347].src = "testing_00347.jpg";
+Images[348].src = "testing_00348.jpg";
+Images[349].src = "testing_00349.jpg";
+Images[350].src = "testing_00350.jpg";
+Images[351].src = "testing_00351.jpg";
+Images[352].src = "testing_00352.jpg";
+Images[353].src = "testing_00353.jpg";
+Images[354].src = "testing_00354.jpg";
+Images[355].src = "testing_00355.jpg";
+Images[356].src = "testing_00356.jpg";
+Images[357].src = "testing_00357.jpg";
+Images[358].src = "testing_00358.jpg";
+Images[359].src = "testing_00359.jpg";
+Images[360].src = "testing_00360.jpg";
+Images[361].src = "testing_00361.jpg";
+Images[362].src = "testing_00362.jpg";
+Images[363].src = "testing_00363.jpg";
+Images[364].src = "testing_00364.jpg";
+Images[365].src = "testing_00365.jpg";
+Images[366].src = "testing_00366.jpg";
+Images[367].src = "testing_00367.jpg";
+Images[368].src = "testing_00368.jpg";
+Images[369].src = "testing_00369.jpg";
+Images[370].src = "testing_00370.jpg";
+Images[371].src = "testing_00371.jpg";
+Images[372].src = "testing_00372.jpg";
+Images[373].src = "testing_00373.jpg";
+Images[374].src = "testing_00374.jpg";
+Images[375].src = "testing_00375.jpg";
+Images[376].src = "testing_00376.jpg";
+Images[377].src = "testing_00377.jpg";
+Images[378].src = "testing_00378.jpg";
+Images[379].src = "testing_00379.jpg";
+Images[380].src = "testing_00380.jpg";
+Images[381].src = "testing_00381.jpg";
+Images[382].src = "testing_00382.jpg";
+Images[383].src = "testing_00383.jpg";
+Images[384].src = "testing_00384.jpg";
+Images[385].src = "testing_00385.jpg";
+Images[386].src = "testing_00386.jpg";
+Images[387].src = "testing_00387.jpg";
+Images[388].src = "testing_00388.jpg";
+Images[389].src = "testing_00389.jpg";
+Images[390].src = "testing_00390.jpg";
+Images[391].src = "testing_00391.jpg";
+Images[392].src = "testing_00392.jpg";
+Images[393].src = "testing_00393.jpg";
+Images[394].src = "testing_00394.jpg";
+Images[395].src = "testing_00395.jpg";
+Images[396].src = "testing_00396.jpg";
+Images[397].src = "testing_00397.jpg";
+Images[398].src = "testing_00398.jpg";
+Images[399].src = "testing_00399.jpg";
+Images[400].src = "testing_00400.jpg";
+Images[401].src = "testing_00401.jpg";
+Images[402].src = "testing_00402.jpg";
+Images[403].src = "testing_00403.jpg";
+Images[404].src = "testing_00404.jpg";
+Images[405].src = "testing_00405.jpg";
+Images[406].src = "testing_00406.jpg";
+Images[407].src = "testing_00407.jpg";
+Images[408].src = "testing_00408.jpg";
+Images[409].src = "testing_00409.jpg";
+Images[410].src = "testing_00410.jpg";
+Images[411].src = "testing_00411.jpg";
+Images[412].src = "testing_00412.jpg";
+Images[413].src = "testing_00413.jpg";
+Images[414].src = "testing_00414.jpg";
+Images[415].src = "testing_00415.jpg";
+Images[416].src = "testing_00416.jpg";
+Images[417].src = "testing_00417.jpg";
+Images[418].src = "testing_00418.jpg";
+Images[419].src = "testing_00419.jpg";
+Images[420].src = "testing_00420.jpg";
+Images[421].src = "testing_00421.jpg";
+Images[422].src = "testing_00422.jpg";
+Images[423].src = "testing_00423.jpg";
+Images[424].src = "testing_00424.jpg";
+Images[425].src = "testing_00425.jpg";
+Images[426].src = "testing_00426.jpg";
+Images[427].src = "testing_00427.jpg";
+Images[428].src = "testing_00428.jpg";
+Images[429].src = "testing_00429.jpg";
+Images[430].src = "testing_00430.jpg";
+Images[431].src = "testing_00431.jpg";
+Images[432].src = "testing_00432.jpg";
+Images[433].src = "testing_00433.jpg";
+Images[434].src = "testing_00434.jpg";
+Images[435].src = "testing_00435.jpg";
+Images[436].src = "testing_00436.jpg";
+Images[437].src = "testing_00437.jpg";
+Images[438].src = "testing_00438.jpg";
+Images[439].src = "testing_00439.jpg";
+Images[440].src = "testing_00440.jpg";
+Images[441].src = "testing_00441.jpg";
+Images[442].src = "testing_00442.jpg";
+Images[443].src = "testing_00443.jpg";
+Images[444].src = "testing_00444.jpg";
+Images[445].src = "testing_00445.jpg";
+Images[446].src = "testing_00446.jpg";
+Images[447].src = "testing_00447.jpg";
+Images[448].src = "testing_00448.jpg";
+Images[449].src = "testing_00449.jpg";
+Images[450].src = "testing_00450.jpg";
+Images[451].src = "testing_00451.jpg";
+Images[452].src = "testing_00452.jpg";
+Images[453].src = "testing_00453.jpg";
+Images[454].src = "testing_00454.jpg";
+Images[455].src = "testing_00455.jpg";
+Images[456].src = "testing_00456.jpg";
+Images[457].src = "testing_00457.jpg";
+Images[458].src = "testing_00458.jpg";
+Images[459].src = "testing_00459.jpg";
+Images[460].src = "testing_00460.jpg";
+Images[461].src = "testing_00461.jpg";
+Images[462].src = "testing_00462.jpg";
+Images[463].src = "testing_00463.jpg";
+Images[464].src = "testing_00464.jpg";
+Images[465].src = "testing_00465.jpg";
+Images[466].src = "testing_00466.jpg";
+Images[467].src = "testing_00467.jpg";
+Images[468].src = "testing_00468.jpg";
+Images[469].src = "testing_00469.jpg";
+Images[470].src = "testing_00470.jpg";
+Images[471].src = "testing_00471.jpg";
+Images[472].src = "testing_00472.jpg";
+Images[473].src = "testing_00473.jpg";
+Images[474].src = "testing_00474.jpg";
+Images[475].src = "testing_00475.jpg";
+Images[476].src = "testing_00476.jpg";
+Images[477].src = "testing_00477.jpg";
+Images[478].src = "testing_00478.jpg";
+Images[479].src = "testing_00479.jpg";
+Images[480].src = "testing_00480.jpg";
+Images[481].src = "testing_00481.jpg";
+Images[482].src = "testing_00482.jpg";
+Images[483].src = "testing_00483.jpg";
+Images[484].src = "testing_00484.jpg";
+Images[485].src = "testing_00485.jpg";
+Images[486].src = "testing_00486.jpg";
+Images[487].src = "testing_00487.jpg";
+Images[488].src = "testing_00488.jpg";
+Images[489].src = "testing_00489.jpg";
+Images[490].src = "testing_00490.jpg";
+Images[491].src = "testing_00491.jpg";
+Images[492].src = "testing_00492.jpg";
+Images[493].src = "testing_00493.jpg";
+Images[494].src = "testing_00494.jpg";
+Images[495].src = "testing_00495.jpg";
+Images[496].src = "testing_00496.jpg";
+Images[497].src = "testing_00497.jpg";
+Images[498].src = "testing_00498.jpg";
+Images[499].src = "testing_00499.jpg";
+
+
+
+  function Load() {
+    begin_animation();
+  }
+
+  function begin_animation() {
+    stop_animation();
+  	EnableCtrls("stop");
+  	run();
+        bRunning = true;
+  }
+
+  function stop_animation() {
+  	EnableCtrls("start");
+  	clearTimeout( timeoutID );
+        bRunning = false;
+  }
+
+  function start_stop() {
+    if (bRunning) {
+      stop_animation();
+    }
+    else {
+      begin_animation();
+    }
+  }
+
+  function run() {
+  	if (nextFrame())
+    	timeoutID = setTimeout( "run()", FRAME_DELAY );
+  }
+
+  function firstFrame() {
+	currentImageIndex = 0;
+  	document.all.animated_image.src = Images[currentImageIndex].src;
+  	DisplayCaption(currentImageIndex)
+  }
+
+  function prevFrame() {
+  	currentImageIndex--;
+  	if( currentImageIndex < 0 )
+  		currentImageIndex= Images.length - 1;
+  	document.all.animated_image.src = Images[currentImageIndex].src;
+  	DisplayCaption(currentImageIndex)
+  }
+
+  function nextFrame() {
+  	currentImageIndex++;
+  	bRetVal = true;
+  	if( currentImageIndex >= Images.length ) {
+  	  if (document.all('checkLoop').checked) {
+    		currentImageIndex = 0;
+  	  }
+  	  else {
+  	    stop_animation();
+  	    currentImageIndex = 0;
+  	    bRetVal = false;
+        return bRetVal;
+  	  }
+  	}
+  	document.all.animated_image.src = Images[currentImageIndex].src;
+  	DisplayCaption(currentImageIndex)
+  	return bRetVal;
+  }
+
+  function lastFrame() {
+	currentImageIndex = Images.length - 1;
+  	document.all.animated_image.src = Images[currentImageIndex].src;
+  	DisplayCaption(currentImageIndex)
+  }
+
+ function DisplayCaption(nFrameNumber) {
+	  document.all.frame_title.innerHTML =  (nFrameNumber + 1)
+ if (bDisplayDate) {
+    	document.all.frame_title.innerHTML = Dates[nFrameNumber];
+ }
+  }
+
+
+  function EnableCtrls(sCtl) {
+	if (sCtl == "stop") {
+		//document.all("btnStop").disabled = false;
+		//document.all("btnStart").disabled = true;
+
+		document.all("btnFirst").disabled = true; 
+		document.all("btnPrev").disabled = true; 
+		document.all("btnNext").disabled = true; 
+		document.all("btnLast").disabled = true; 
+                document.all("btnToggle").innerText = "Arrêter";
+	}
+	if (sCtl == "start") {
+		//document.all("btnStop").disabled = true; 
+		//document.all("btnStart").disabled = false;
+
+		document.all("btnFirst").disabled = false;
+		document.all("btnPrev").disabled = false;
+		document.all("btnNext").disabled = false;
+		document.all("btnLast").disabled = false;
+                document.all("btnToggle").innerText = "Démarrer";
+	}
+  }
+
+  function showCounter(bShow) {
+    if (bShow) {
+      document.all('frame_title').style.display = "inline";
+    }
+    else {
+      document.all('frame_title').style.display = "none";
+    }
+  }
+</SCRIPT>

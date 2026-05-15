@@ -1,0 +1,19 @@
+# Fichiers vidéo trop lourds pour GitHub (> 100 MB)
+*.mov
+*.avi
+*.mkv
+
+# Fichiers Office et documents internes
+*.docx
+*.doc
+*.xlsx
+*.pptx
+
+# Dossiers internes
+.claude/
+trash/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
