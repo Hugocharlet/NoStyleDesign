@@ -1,14 +1,26 @@
 [build]
   publish = "."
 
+# Redirect /fr and /pt without trailing slash
 [[redirects]]
-  from = "http://www.nostyle-design.com/*"
-  to   = "https://www.nostyle-design.com/:splat"
+  from = "/fr"
+  to = "/fr/"
   status = 301
-  force  = true
 
 [[redirects]]
-  from = "http://nostyle-design.com/*"
-  to   = "https://www.nostyle-design.com/:splat"
+  from = "/pt"
+  to = "/pt/"
   status = 301
-  force  = true
+
+# Browser language auto-redirect from homepage
+[[redirects]]
+  from = "/"
+  to = "/fr/"
+  status = 302
+  conditions = {Language = ["fr", "fr-FR", "fr-BE", "fr-CH", "fr-CA"]}
+
+[[redirects]]
+  from = "/"
+  to = "/pt/"
+  status = 302
+  conditions = {Language = ["pt", "pt-PT", "pt-BR"]}

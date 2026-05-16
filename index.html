@@ -12,6 +12,10 @@
 <meta name="robots" content="index, follow" />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <link rel="canonical" href="https://www.nostyle-design.com/" />
+<link rel="alternate" hreflang="en" href="https://www.nostyle-design.com/" />
+<link rel="alternate" hreflang="fr" href="https://www.nostyle-design.com/fr/" />
+<link rel="alternate" hreflang="pt" href="https://www.nostyle-design.com/pt/" />
+<link rel="alternate" hreflang="x-default" href="https://www.nostyle-design.com/" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
 <!-- Open Graph -->
@@ -125,11 +129,15 @@ body::before{
 }
 .nav-links a:hover::after{width:100%}
 .nav-tel{
-  justify-self:end;
   font-family:var(--mono);font-style:italic;font-size:13px;
   color:var(--terra);
 }
 .nav-tel:hover{color:var(--terra-light)}
+.nav-right{justify-self:end;display:flex;align-items:center;gap:20px}
+.lang-switch{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:11px;letter-spacing:.08em}
+.lang-switch a{color:var(--ink-soft);transition:color .2s ease;text-transform:uppercase}
+.lang-switch a:hover,.lang-switch a.is-active{color:var(--terra)}
+.ls-sep{color:var(--rule)}
 
 /* ============ TYPE ============ */
 .eyebrow{
@@ -1026,7 +1034,12 @@ body.hide-mono-labels .cad-card .label{display:none}
     <a href="#skills">Skills</a>
     <a href="#why">Why us</a>
   </div>
-  <a href="#contact" class="nav-tel">Contact</a>
+  <div class="nav-right">
+    <div class="lang-switch">
+      <a href="/" class="is-active">EN</a><span class="ls-sep">·</span><a href="/fr/">FR</a><span class="ls-sep">·</span><a href="/pt/">PT</a>
+    </div>
+    <a href="#contact" class="nav-tel">Contact</a>
+  </div>
   <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
