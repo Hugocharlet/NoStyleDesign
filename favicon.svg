@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="0" y="0" width="64" height="64" rx="13" ry="13" fill="#1D1D1D"/>
+  <text
+    x="32" y="32"
+    font-family="'Roboto', sans-serif"
+    font-weight="700"
+    font-size="26"
+    fill="#FFFFFF"
+    text-anchor="middle"
+    dominant-baseline="central"
+    letter-spacing="0.8">No.</text>
+</svg>

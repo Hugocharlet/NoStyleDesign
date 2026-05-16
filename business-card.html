@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>No.Style — Business Card</title>
+<link rel="preconnect" href="https://api.fontshare.com">
+<link href="https://api.fontshare.com/v2/css?f[]=satoshi@700,900&f[]=general-sans@500,600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Hanken+Grotesk:wght@300;600&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&family=Inter:wght@500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&family=Roboto:wght@600;700&display=swap" rel="stylesheet">
+<style>
+
+/* 85 × 54 mm — affiché × 4 = 340 × 216 px */
+:root{
+  --w: 340px;
+  --h: 216px;
+  --bg:    #EAE4DC;
+  --ink:   #1D1D1D;
+  --terra:       #C97035;
+  --terra-recto: #A94218;
+  --dark:  #1A1816;
+  --mono:  'IBM Plex Mono', monospace;
+  --sans:  'Hanken Grotesk', sans-serif;
+  --serif: 'Cormorant Garamond', serif;
+}
+
+*, *::before, *::after{ box-sizing:border-box; margin:0; padding:0; }
+
+body{
+  background: #C8C2B9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 60px 24px 80px;
+  min-height: 100vh;
+}
+
+.lbl{
+  font-family: var(--mono);
+  font-style: italic;
+  font-size: 10px;
+  color: #7A726A;
+  letter-spacing: .08em;
+  align-self: flex-start;
+  margin-left: calc(50% - var(--w)/2);
+  margin-bottom: -18px;
+}
+
+.card{
+  width: var(--w);
+  height: var(--h);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,.08),
+    0 8px 24px rgba(0,0,0,.16),
+    0 24px 56px rgba(0,0,0,.14);
+}
+
+/* ═══════════════════════════
+   RECTO
+═══════════════════════════ */
+.front{ background: var(--bg); }
+
+/* Barre ocre gauche — 5px */
+.front::before{
+  content:'';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 7px;
+  background: var(--terra-recto);
+}
+
+/* "BORDEAUX · FRANCE" vertical droite */
+.front-city{
+  position: absolute;
+  right: 26px;
+  bottom: 28px;
+  writing-mode: vertical-lr;
+  transform: rotate(180deg);
+  font-weight: 500;
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(22,20,18,.38);
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* padding : top 22 / right 52 (réservé zone city) / bottom 22 / left 38 (après barre) */
+.front-inner{
+  padding: 36px 52px 34px 38px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── Logo ── */
+.f-brand{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: .015em;
+  font-kerning: auto;
+  color: var(--ink);
+  line-height: .95;
+}
+
+.f-tagline{
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 8px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--terra-recto);
+  margin-top: 13px;
+}
+
+.f-rule{
+  width: 30px;
+  height: 1.5px;
+  background: var(--terra-recto);
+  margin-top: 13px;
+}
+
+/* ── Nom ── */
+.f-name{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.f-role{
+  font-family: var(--mono);
+  font-size: 8px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--terra-recto);
+  margin-top: 5px;
+}
+
+/* ═══════════════════════════
+   VERSO
+═══════════════════════════ */
+.back{ background: var(--dark); }
+
+/* padding : top 20 / right 24 / bottom 18 / left 24 */
+.back-inner{
+  padding: 28px 38px 24px 38px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo + dot */
+.b-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.b-logo{
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: .005em;
+  color: #FFFFFF;
+  line-height: 1;
+}
+
+.city-dot{ font-size: 11px; vertical-align: middle; }
+
+.b-tagline{
+  font-family: var(--mono);
+  font-weight: 400;
+  font-size: 6.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-top: 4px;
+}
+
+.b-dot{
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--terra);
+}
+
+/* Séparateur horizontal */
+.b-hr{
+  height: 1px;
+  background: rgba(255,255,255,.09);
+  margin: 14px 0 14px;
+  flex-shrink: 0;
+}
+
+/* Grille 2 colonnes avec séparateur vertical */
+.b-grid{
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr;
+  flex: 1;
+  align-content: center;
+}
+
+.b-col{
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.b-col-l{ padding-right: 16px; }
+.b-col-r{ padding-left:  16px; }
+
+/* Séparateur vertical */
+.b-vsep{
+  width: 1px;
+  background: rgba(255,255,255,.09);
+  align-self: stretch;
+}
+
+/* Item contact */
+.b-item{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.b-icon{
+  flex-shrink: 0;
+  width: 12px; height: 12px;
+  color: var(--terra);
+}
+.b-icon svg{ width:100%; height:100%; display:block; stroke-width:1.4; stroke-linecap:round; stroke-linejoin:round; }
+
+/* Label — IBM Plex Mono */
+.b-key{
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--terra);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+/* Valeur — Hanken Grotesk thin */
+.b-val{
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 8px;
+  color: rgba(255,255,255,.65);
+  line-height: 1.45;
+  letter-spacing: .01em;
+}
+
+/* Pied de page */
+.b-foot{
+  flex-shrink: 0;
+  border-top: 1px solid rgba(255,255,255,.09);
+  padding-top: 10px;
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.b-est{
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--terra);
+}
+.b-loc{
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.82);
+}
+.b-bull{
+  font-size: 8px;
+  color: rgba(255,255,255,.3);
+  line-height: 1;
+}
+
+/* ─── Print ─── */
+@media print{
+  :root{ --w:85mm; --h:54mm; }
+  body{ background:white; padding:0; gap:0; }
+  .lbl{ display:none; }
+  .card{ box-shadow:none; page-break-after:always; break-after:page; }
+  .front, .back{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+}
+</style>
+</head>
+<body>
+
+<p class="lbl">Recto —</p>
+
+<!-- ══ RECTO ══ -->
+<div class="card front">
+  <div class="front-inner">
+    <div>
+      <div class="f-brand">No.Style</div>
+      <div class="f-tagline">Contract Furniture Design</div>
+      <div class="f-rule"></div>
+    </div>
+    <div>
+      <div class="f-name">Hugo Charlet</div>
+      <div class="f-role">Design Director &amp; Founder</div>
+    </div>
+  </div>
+  <div class="front-city">Bordeaux &nbsp;<span class="city-dot">·</span>&nbsp; France</div>
+</div>
+
+<p class="lbl">Verso —</p>
+
+<!-- ══ VERSO ══ -->
+<div class="card back">
+  <div class="back-inner">
+
+    <div class="b-head">
+      <div>
+        <div class="b-logo">No.Style</div>
+        <div class="b-tagline">Contract Furniture Design</div>
+      </div>
+      <div class="b-dot"></div>
+    </div>
+
+    <div class="b-hr"></div>
+
+    <div class="b-grid">
+      <div class="b-col b-col-l">
+
+        <div class="b-item">
+          <div class="b-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="2" y="4" width="20" height="16" rx="2"/>
+              <path d="m2 7 10 7 10-7"/>
+            </svg>
+          </div>
+          <div>
+            <div class="b-key">Email</div>
+            <div class="b-val">info@hugocharlet.com</div>
+          </div>
+        </div>
+
+        <div class="b-item">
+          <div class="b-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.128.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.572 2.81.7A2 2 0 0 1 21.73 16.92z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="b-key">Téléphone</div>
+            <div class="b-val">+33 6 72 66 66 86</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="b-vsep"></div>
+
+      <div class="b-col b-col-r">
+
+        <div class="b-item">
+          <div class="b-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="b-key">Web</div>
+            <div class="b-val">nostyle-design.com</div>
+          </div>
+        </div>
+
+        <div class="b-item">
+          <div class="b-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div>
+            <div class="b-key">Adresse</div>
+            <div class="b-val">8 rue du Cdt Arnould<br>33000 Bordeaux</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="b-foot">
+      <span class="b-est">Est. 2026</span>
+      <span class="b-bull">·</span>
+      <span class="b-loc">Bordeaux, France</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
