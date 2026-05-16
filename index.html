@@ -698,7 +698,7 @@ body.hide-mono-labels .cad-card .label{display:none}
 .process-video video{
   display:block;width:100%;height:auto;
   aspect-ratio:16/9;object-fit:cover;
-  filter:saturate(.95);
+  filter:saturate(.95);cursor:pointer;
 }
 .process-video figcaption{
   position:absolute;left:16px;bottom:14px;
@@ -1671,6 +1671,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') lb.classList.
     vid.paused ? vid.play() : vid.pause();
     sync();
   });
+  vid.addEventListener('click', () => { vid.paused ? vid.play() : vid.pause(); });
   vid.addEventListener('play', sync);
   vid.addEventListener('pause', sync);
   sync();

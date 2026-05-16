@@ -331,7 +331,7 @@ body.hide-mono-labels .cad-card .label{display:none}
 
 /* ============ PROCESS ============ */
 .process-video{margin:80px auto 0;max-width:1100px;position:relative;background:var(--ink);overflow:hidden}
-.process-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:saturate(.95)}
+.process-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;filter:saturate(.95);cursor:pointer}
 .process-video figcaption{position:absolute;left:16px;bottom:14px;display:flex;flex-direction:column;gap:4px;font-family:var(--mono);font-style:italic;font-size:12px;color:#FAF7F3;letter-spacing:.02em;text-shadow:0 1px 6px rgba(0,0,0,.5)}
 .process-video .pv-tag{color:var(--terra-light)}
 .pv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(.82);width:42px;height:42px;border-radius:50%;background:rgba(90,85,80,.68);border:none;color:#FAF7F3;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;opacity:0;transition:opacity .25s ease, transform .25s ease, background .2s ease;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
@@ -976,6 +976,7 @@ lb.addEventListener('click', () => { lb.classList.remove('show'); document.body.
   const iconPlay  = btn.querySelector('.pv-icon-play');
   function sync(){ const playing = !vid.paused; iconPause.style.display = playing ? '' : 'none'; iconPlay.style.display = playing ? 'none' : ''; btn.setAttribute('aria-label', playing ? 'Pause' : 'Lecture'); }
   btn.addEventListener('click', e => { e.stopPropagation(); vid.paused ? vid.play() : vid.pause(); sync(); });
+  vid.addEventListener('click', () => { vid.paused ? vid.play() : vid.pause(); });
   vid.addEventListener('play', sync);
   vid.addEventListener('pause', sync);
   sync();
