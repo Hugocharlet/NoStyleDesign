@@ -949,6 +949,9 @@ function toggleSkillsTarget(targetId, force){
 document.querySelectorAll('.sk-toggle').forEach(btn => {
   btn.addEventListener('click', e => { e.stopPropagation(); toggleSkillsTarget(btn.dataset.target); });
 });
+document.querySelectorAll('.sk-box').forEach(box => {
+  box.addEventListener('click', () => toggleSkillsTarget(box.dataset.target));
+});
 
 /* Lightbox */
 const lb = document.getElementById('lightbox');
