@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>No.Style — Design Studio Brochure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&family=Hanken+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:         #F5F0EA;
+    --bg-alt:     #EDE7DC;
+    --bg-card:    #FAF7F3;
+    --ink:        #1A1714;
+    --ink-soft:   #6B5F54;
+    --terra:      #B85C38;
+    --terra-light:#D4795A;
+    --rule:       #D6CEC4;
+    --sans:       'Hanken Grotesk', sans-serif;
+    --mono:       'IBM Plex Mono', monospace;
+    --serif:      'Unna', serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--sans);
+    background: #ccc;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── A4 page shell ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: var(--bg);
+    margin: 12mm auto;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Print ── */
+  @media print {
+    body { background: white; }
+    .page {
+      margin: 0;
+      page-break-after: always;
+      break-after: page;
+    }
+    .page:last-child { page-break-after: avoid; break-after: avoid; }
+    .no-print { display: none !important; }
+  }
+
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  /* ══════════════════════════════════════
+     PAGE 1 — COVER
+  ══════════════════════════════════════ */
+  .cover {
+    background: var(--ink);
+    color: #FAF7F3;
+    padding: 0;
+  }
+
+  .cover-top {
+    padding: 14mm 16mm 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .cover-brand .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 28pt;
+    color: #FAF7F3;
+    letter-spacing: -.02em;
+    line-height: 1;
+  }
+
+  .cover-brand .tag {
+    font-family: var(--sans);
+    font-size: 8pt;
+    color: rgba(250,247,243,.5);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .cover-year {
+    font-family: var(--mono);
+    font-size: 8pt;
+    color: rgba(250,247,243,.4);
+    letter-spacing: .08em;
+    padding-top: 6px;
+  }
+
+  .cover-image {
+    margin: 10mm 0 0;
+    width: 100%;
+    height: 108mm;
+    background: url('pro-projects/pro-project-helena-ambiance-1.jpg') center/cover no-repeat;
+    position: relative;
+  }
+
+  .cover-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(26,23,20,.75) 100%);
+  }
+
+  .cover-image-caption {
+    position: absolute;
+    bottom: 8mm;
+    left: 16mm;
+    z-index: 2;
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: 7.5pt;
+    color: rgba(250,247,243,.6);
+    letter-spacing: .04em;
+  }
+
+  .cover-body {
+    padding: 12mm 16mm 14mm;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover-headline {
+    font-size: 34pt;
+    font-weight: 700;
+    line-height: .96;
+    letter-spacing: -.025em;
+    color: #FAF7F3;
+    max-width: 18ch;
+  }
+
+  .cover-headline em {
+    font-style: italic;
+    color: var(--terra-light);
+  }
+
+  .cover-tagline {
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: 9pt;
+    color: rgba(250,247,243,.55);
+    letter-spacing: .03em;
+    margin-top: 7mm;
+    max-width: 44ch;
+    line-height: 1.65;
+  }
+
+  .cover-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 9mm;
+  }
+
+  .pill {
+    font-family: var(--mono);
+    font-size: 7pt;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(250,247,243,.7);
+    border: 1px solid rgba(250,247,243,.2);
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+
+  .cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 1px solid rgba(255,255,255,.08);
+    padding-top: 6mm;
+  }
+
+  .cover-footer-left {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    color: rgba(250,247,243,.4);
+    line-height: 1.7;
+  }
+
+  .cover-footer-right {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    color: var(--terra-light);
+    font-style: italic;
+    letter-spacing: .02em;
+    text-align: right;
+    line-height: 1.7;
+  }
+
+  /* ══════════════════════════════════════
+     PAGE 2 — SERVICES & EXPERTISE
+  ══════════════════════════════════════ */
+  .p2 { background: var(--bg); }
+
+  .page-header {
+    padding: 10mm 16mm 8mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .page-brand .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--ink);
+    letter-spacing: -.01em;
+  }
+
+  .page-header-right {
+    font-family: var(--mono);
+    font-size: 7pt;
+    color: var(--ink-soft);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+
+  .page-body {
+    padding: 10mm 16mm;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10mm;
+  }
+
+  /* section label */
+  .s-label {
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: 8pt;
+    color: var(--terra);
+    letter-spacing: .04em;
+    margin-bottom: 3mm;
+  }
+
+  .s-title {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 18pt;
+    letter-spacing: -.02em;
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin-bottom: 5mm;
+  }
+
+  /* intro text */
+  .intro-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+    align-items: start;
+  }
+
+  .intro-text p {
+    font-size: 9pt;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    max-width: none;
+    margin-bottom: 3mm;
+  }
+
+  .intro-text p strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .intro-image {
+    background: url('3Dskills/cad-modeling-skill-surface-modeling.png') center/cover no-repeat;
+    aspect-ratio: 4/3;
+    position: relative;
+  }
+
+  .intro-image::after {
+    content: "";
+    position: absolute;
+    inset: 6px -6px -6px 6px;
+    border: 1px solid var(--rule);
+    z-index: -1;
+  }
+
+  /* services grid */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4mm;
+  }
+
+  .svc-card {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--rule);
+    padding: 5mm 5mm 5.5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+  }
+
+  .svc-num {
+    font-family: var(--mono);
+    font-size: 7pt;
+    color: var(--terra);
+    letter-spacing: .06em;
+  }
+
+  .svc-card h3 {
+    font-size: 9pt;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -.01em;
+    color: var(--ink);
+  }
+
+  .svc-card p {
+    font-size: 7.5pt;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  /* software strip */
+  .soft-strip {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+    padding-top: 4mm;
+    align-items: center;
+  }
+
+  .soft-strip-label {
+    font-family: var(--mono);
+    font-size: 7pt;
+    color: var(--ink-soft);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-right: 6mm;
+    white-space: nowrap;
+  }
+
+  .soft-strip-items {
+    display: flex;
+    gap: 5mm;
+    flex-wrap: wrap;
+  }
+
+  .soft-strip-items span {
+    font-family: var(--mono);
+    font-size: 7.5pt;
+    color: var(--ink);
+    letter-spacing: .04em;
+  }
+
+  /* ══════════════════════════════════════
+     PAGE 3 — WHY US + PROCESS + CONTACT
+  ══════════════════════════════════════ */
+  .p3 { background: var(--bg); }
+
+  .why-grid-print {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3.5mm;
+  }
+
+  .why-card {
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--rule);
+    padding: 4mm 4.5mm 5mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2mm;
+  }
+
+  .why-card h3 {
+    font-size: 8.5pt;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--ink);
+  }
+
+  .why-card p {
+    font-size: 7pt;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  /* process timeline */
+  .timeline-print {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 3mm;
+    position: relative;
+  }
+
+  .timeline-print::before {
+    content: "";
+    position: absolute;
+    top: 3mm;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .step-print {
+    padding-top: 8mm;
+    position: relative;
+  }
+
+  .step-print .dot {
+    position: absolute;
+    top: 1.5mm;
+    left: 0;
+    width: 4mm;
+    height: 4mm;
+    background: var(--bg);
+    border: 1.5px solid var(--terra);
+    border-radius: 50%;
+  }
+
+  .step-print .num {
+    font-family: var(--mono);
+    font-size: 7pt;
+    color: var(--terra);
+    letter-spacing: .06em;
+    display: block;
+    margin-bottom: 2mm;
+  }
+
+  .step-print h3 {
+    font-size: 8.5pt;
+    font-weight: 600;
+    margin-bottom: 1.5mm;
+    line-height: 1.2;
+  }
+
+  .step-print p {
+    font-size: 7pt;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  /* contact block */
+  .contact-block {
+    background: var(--ink);
+    color: #FAF7F3;
+    padding: 8mm 10mm;
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 1fr;
+    gap: 8mm;
+    margin-top: auto;
+  }
+
+  .cb-brand .mark {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 22pt;
+    color: #FAF7F3;
+    letter-spacing: -.01em;
+    line-height: 1;
+  }
+
+  .cb-brand .tag {
+    font-family: var(--sans);
+    font-size: 7.5pt;
+    color: rgba(237,231,220,.45);
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    margin-top: 3mm;
+    margin-bottom: 4mm;
+  }
+
+  .cb-brand .desc {
+    font-family: var(--mono);
+    font-style: italic;
+    font-size: 7.5pt;
+    color: rgba(237,231,220,.5);
+    line-height: 1.7;
+    max-width: 28ch;
+  }
+
+  .cb-col h4 {
+    font-family: var(--mono);
+    font-size: 6.5pt;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.3);
+    margin-bottom: 3mm;
+    padding-bottom: 2.5mm;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+
+  .cb-col p, .cb-col a {
+    display: block;
+    font-family: var(--mono);
+    font-size: 8pt;
+    color: rgba(237,231,220,.65);
+    line-height: 1.8;
+    text-decoration: none;
+  }
+
+  .cb-col a {
+    color: var(--terra-light);
+  }
+
+  .cb-col .remote {
+    font-style: italic;
+    font-size: 7pt;
+    color: rgba(237,231,220,.35);
+    margin-top: 3mm;
+    padding-top: 3mm;
+    border-top: 1px solid rgba(255,255,255,.06);
+    line-height: 1.7;
+  }
+
+  /* ── Print button ── */
+  .print-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--terra);
+    color: #FAF7F3;
+    border: none;
+    padding: 12px 24px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(184,92,56,.4);
+    transition: background .2s ease;
+    z-index: 999;
+  }
+  .print-btn:hover { background: var(--terra-light); }
+</style>
+</head>
+<body>
+
+<!-- ══════════════ PAGE 1 — COVER ══════════════ -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-brand">
+      <div class="mark">No.Style</div>
+      <div class="tag">Contract Furniture Design Studio</div>
+    </div>
+    <div class="cover-year">2026</div>
+  </div>
+
+  <div class="cover-image">
+    <span class="cover-image-caption">Helena chair — currently in production</span>
+  </div>
+
+  <div class="cover-body">
+    <div>
+      <h1 class="cover-headline">On-demand design <em>experts.</em><br>Zero royalties.</h1>
+      <p class="cover-tagline">We specialise in contemporary contract furniture — 3D modelling, photorealistic rendering, scale models and production drawings. Remote across Europe, based in Bordeaux.</p>
+      <div class="cover-pills">
+        <span class="pill">3D Modelling</span>
+        <span class="pill">Rendering</span>
+        <span class="pill">Scale Models</span>
+        <span class="pill">Production Drawings</span>
+        <span class="pill">No Royalties</span>
+        <span class="pill">NDA Protected</span>
+      </div>
+    </div>
+
+    <div class="cover-footer">
+      <div class="cover-footer-left">
+        8 rue du Commandant Arnould<br>
+        33000 Bordeaux, France<br>
+        info@hugocharlet.com
+      </div>
+      <div class="cover-footer-right">
+        +33 6 72 66 66 86<br>
+        nostyle-design.com<br>
+        Mon – Fri · 09:00–19:00 CET
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 2 — SERVICES & EXPERTISE ══════════════ -->
+<div class="page p2">
+  <div class="page-header">
+    <div class="page-brand"><span class="mark">No.Style</span></div>
+    <div class="page-header-right">Services &amp; Expertise</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Intro -->
+    <div>
+      <div class="s-label">— Who we are</div>
+      <div class="s-title">Furniture design,<br>engineered.</div>
+      <div class="intro-block">
+        <div class="intro-text">
+          <p>No.Style is a design studio specialised in <strong>contemporary contract furniture</strong>. With 10 years of experience in the furniture industry as industrial designers, we are first and foremost technicians passionate about furniture.</p>
+          <p>Holding degrees in <strong>mechanical engineering</strong>, we master the technical constraints of industrialisation. As design-oriented engineers, we understand your needs and propose creative solutions aligned with your innovation strategy.</p>
+          <p>Our experience as designers at world-renowned studios in Milan — notably <strong>Claudio Bellini</strong> and <strong>Michele de Lucchi</strong> — allowed us to develop a refined style for modern, timeless furniture.</p>
+        </div>
+        <div class="intro-image"></div>
+      </div>
+    </div>
+
+    <!-- Services -->
+    <div>
+      <div class="s-label">— What we offer</div>
+      <div class="s-title">Services</div>
+      <div class="services-grid">
+        <div class="svc-card">
+          <span class="svc-num">01</span>
+          <h3>On-demand 3D services</h3>
+          <p>Technical design, 3D modelling &amp; rendering, new concept proposals — billed hourly.</p>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">02</span>
+          <h3>A creative boost</h3>
+          <p>An outside perspective. Original, economically viable proposals that fit your collection and production constraints.</p>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">03</span>
+          <h3>Zero royalties</h3>
+          <p>No copyright fees. All developed concepts and files remain your exclusive property.</p>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">04</span>
+          <h3>Long-term partnership</h3>
+          <p>Built on trust, full transparency and NDAs that protect your know-how and developments.</p>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">05</span>
+          <h3>Flexible billing</h3>
+          <p>Hourly or per-project rates. No commitment — scale up or down to match your roadmap.</p>
+        </div>
+        <div class="svc-card">
+          <span class="svc-num">06</span>
+          <h3>Files &amp; drawings</h3>
+          <p>Production-ready files: STEP, IGES, STL, technical drawings. Delivered with revisions, workshop-ready.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Software -->
+    <div class="soft-strip">
+      <span class="soft-strip-label">Tools</span>
+      <div class="soft-strip-items">
+        <span>Rhinoceros 3D</span>
+        <span>Keyshot</span>
+        <span>Blender</span>
+        <span>V-Ray</span>
+        <span>AI workflows</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════ PAGE 3 — WHY US + PROCESS + CONTACT ══════════════ -->
+<div class="page p3">
+  <div class="page-header">
+    <div class="page-brand"><span class="mark">No.Style</span></div>
+    <div class="page-header-right">Why Us &amp; Process</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Why us -->
+    <div>
+      <div class="s-label">— Why choose us</div>
+      <div class="s-title">Your plug-and-play<br>studio resource.</div>
+      <div class="why-grid-print">
+        <div class="why-card">
+          <h3>On-demand 3D expert</h3>
+          <p>From a single revision to a full collection. A plug-and-play studio resource available when you need it.</p>
+        </div>
+        <div class="why-card">
+          <h3>Confidentiality first</h3>
+          <p>NDA on every project. Your developments, prototypes and know-how are fully protected.</p>
+        </div>
+        <div class="why-card">
+          <h3>Design intelligence</h3>
+          <p>We monitor market trends and translate them into creative, distinctive proposals for your brand.</p>
+        </div>
+        <div class="why-card">
+          <h3>Fresh perspective</h3>
+          <p>An outside eye with a different cultural background, adapted to your market and audience.</p>
+        </div>
+        <div class="why-card">
+          <h3>Engineering knowledge</h3>
+          <p>Mechanical engineering background. We understand and respect your technical and manufacturing constraints.</p>
+        </div>
+        <div class="why-card">
+          <h3>Reliable &amp; flexible</h3>
+          <p>Responsive, available and adaptable to your schedule — without sacrificing quality.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Process -->
+    <div>
+      <div class="s-label">— How we work</div>
+      <div class="s-title">Our process</div>
+      <div class="timeline-print">
+        <div class="step-print">
+          <span class="dot"></span>
+          <span class="num">01 →</span>
+          <h3>Discovery</h3>
+          <p>We listen closely to understand your positioning, brand identity and constraints.</p>
+        </div>
+        <div class="step-print">
+          <span class="dot"></span>
+          <span class="num">02 →</span>
+          <h3>Workshop visit</h3>
+          <p>On-site to understand your brand identity, tools and manufacturing know-how.</p>
+        </div>
+        <div class="step-print">
+          <span class="dot"></span>
+          <span class="num">03 →</span>
+          <h3>Concept</h3>
+          <p>Sketches and concept presentations with detailed imagery and scenarios.</p>
+        </div>
+        <div class="step-print">
+          <span class="dot"></span>
+          <span class="num">04 →</span>
+          <h3>3D &amp; Drawings</h3>
+          <p>Industrialisation-ready files — technical drawings and 3D in your formats.</p>
+        </div>
+        <div class="step-print">
+          <span class="dot"></span>
+          <span class="num">05 →</span>
+          <h3>Iterations</h3>
+          <p>Available for all revisions, improvements and ongoing follow-up requests.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Contact footer -->
+  <div class="contact-block">
+    <div class="cb-brand">
+      <div class="mark">No.Style</div>
+      <div class="tag">Contract Furniture Design</div>
+      <div class="desc">Contemporary contract furniture — from concept to manufacturable objects.</div>
+    </div>
+    <div class="cb-col">
+      <h4>Address</h4>
+      <p>8 rue du Commandant Arnould<br>33000 Bordeaux<br>France</p>
+      <p class="remote">Remote across Europe.<br>Workshop visits on request.</p>
+    </div>
+    <div class="cb-col">
+      <h4>Contact</h4>
+      <a href="tel:+33672666686">+33 6 72 66 66 86</a>
+      <a href="mailto:info@hugocharlet.com">info@hugocharlet.com</a>
+      <p>nostyle-design.com</p>
+      <p class="remote">Available Mon – Fri<br>09:00 – 19:00 CET</p>
+    </div>
+  </div>
+</div>
+
+<!-- Print button -->
+<button class="print-btn no-print" onclick="window.print()">↓ Print / Save PDF</button>
+
+</body>
+</html>
