@@ -73,6 +73,7 @@
   --ink-soft: #6B5F54;
   --terra: #B85C38;
   --terra-light: #D4795A;
+  --terra-vivid: #C96840;
   --rule: #D6CEC4;
   --sans: 'Hanken Grotesk', sans-serif;
   --mono: 'IBM Plex Mono', monospace;
@@ -126,9 +127,11 @@ section{position:relative;z-index:2}
 .hero-slide{position:absolute;inset:0;opacity:0;transform:scale(1.04);transition:opacity 1.1s ease, transform 6s ease;will-change:opacity, transform}
 .hero-slide.is-active{opacity:1;transform:scale(1.0)}
 .hero-slide img{width:100%;height:100%;object-fit:cover;filter:saturate(.92) brightness(.9)}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(26,23,20,.15) 0%, rgba(26,23,20,0) 35%, rgba(26,23,20,.65) 100%);pointer-events:none}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse 110% 90% at 0% 100%, rgba(10,8,6,.85) 0%, rgba(10,8,6,.4) 45%, rgba(10,8,6,0) 68%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(26,23,20,0) 0%, rgba(26,23,20,0) 40%, rgba(26,23,20,.55) 100%);pointer-events:none}
 .hero-content{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:48px 36px;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;color:#FAF7F3}
-.hero-title{font-weight:700;font-size:clamp(44px, 6vw, 92px);line-height:.98;letter-spacing:-.02em;color:#FAF7F3;max-width:14ch}
+.hero-title{font-weight:700;font-size:clamp(32px, 4.2vw, 68px);line-height:.98;letter-spacing:-.02em;color:#FAF7F3;max-width:14ch}
+.hero-title em{font-style:italic;color:var(--terra-vivid);font-weight:600}
 .hero-sub{margin-top:18px;font-family:var(--mono);font-style:italic;font-size:14px;color:rgba(250,247,243,.78);letter-spacing:.02em}
 .hero-nav{display:flex;flex-direction:column;align-items:flex-end;gap:18px;color:#FAF7F3}
 .hero-counter{font-family:var(--mono);font-style:italic;font-size:13px;color:rgba(250,247,243,.85);letter-spacing:.04em}
@@ -414,7 +417,7 @@ section{position:relative;z-index:2}
   </div>
   <div class="hero-content">
     <div>
-      <h1 class="hero-title">Design <br> à la carte <br> sem royalties</h1>
+      <h1 class="hero-title">Design<br><em>à la carte</em><br>sem royalties</h1>
       <p class="hero-sub">Modelação 3D · Visualização · Design de mobiliário</p>
     </div>
     <div class="hero-nav">
