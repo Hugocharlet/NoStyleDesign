@@ -62,8 +62,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;1,400&family=Roboto:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:ital,wght@0,400;1,400&family=Roboto:wght@400;600&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900;1,600;1,800;1,900&family=IBM+Plex+Mono:ital,wght@0,400;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;0,900;1,600;1,800;1,900&family=IBM+Plex+Mono:ital,wght@0,400;1,400&display=swap"></noscript>
 <style>
 :root{
   --bg: #F5F0EA;
@@ -119,9 +119,10 @@ body::before{
   border-bottom-color:var(--rule);
   padding:14px 36px;
 }
-.brand{display:flex;flex-direction:column;line-height:1}
-.brand .mark{font-family:'Unna', serif;font-style:italic;font-weight:700;font-size:22px;letter-spacing:-.01em}
-.brand .tag{font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:4px;letter-spacing:.02em}
+.brand{display:flex;align-items:center;gap:14px}
+.brand .wordmark{font-family:var(--sans);font-weight:900;font-style:italic;font-size:1.25rem;letter-spacing:.06em;color:var(--ink);line-height:1;white-space:nowrap}
+.brand .sep{width:1px;height:1.45rem;background:var(--terra);flex-shrink:0}
+.brand .tagline{font-family:var(--sans);font-weight:400;font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);line-height:1.65}
 .nav-links{display:flex;gap:32px;justify-content:center}
 .nav-links a{
   font-weight:500;font-size:13px;text-transform:uppercase;letter-spacing:.1em;
@@ -151,8 +152,8 @@ body::before{
 .eyebrow.muted{color:var(--ink-soft)}
 .eyebrow.on-dark{color:rgba(255,255,255,.55)}
 h2.section-title{
-  font-family:'Roboto', sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:.08em;
-  font-size:clamp(36px, 5vw, 64px);line-height:1;
+  font-family:var(--sans);font-weight:600;font-style:italic;text-transform:uppercase;letter-spacing:.06em;
+  font-size:clamp(42px, 5.5vw, 72px);line-height:1;
   margin:18px 0 28px;
 }
 h3{font-weight:600;font-size:20px;letter-spacing:-.005em;line-height:1.3}
@@ -479,8 +480,9 @@ body.hide-mono-labels .cad-card .label{display:none}
 <!-- ================= NAV ================= -->
 <nav class="nav" id="nav">
   <a href="../" class="brand">
-    <span class="mark">No.Style</span>
-    <span class="tag">design mobili contract</span>
+    <span class="wordmark">No.STYLE</span>
+    <span class="sep"></span>
+    <span class="tagline">Contract<br>Mobili Design</span>
   </a>
   <div class="nav-links">
     <a href="#who">Chi siamo</a>
